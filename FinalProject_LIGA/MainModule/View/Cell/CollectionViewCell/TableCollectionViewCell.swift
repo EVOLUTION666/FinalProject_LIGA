@@ -30,11 +30,11 @@ class TableCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configure(with model: MovieModel) {
+    func configure(with model: MovieModel) {
         image.loadImage(url: model.image)
     }
     
-    func configureUI() {
+    private func configureUI() {
         contentView.addSubview(image)
         contentView.backgroundColor = .clear
         NSLayoutConstraint.activate([

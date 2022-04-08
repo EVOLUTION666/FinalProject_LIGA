@@ -21,7 +21,6 @@ class SearchViewController: UIViewController {
         searchController.searchBar.sizeToFit()
         searchController.searchBar.searchBarStyle = .prominent
         definesPresentationContext = true
-        searchController.searchResultsUpdater = adapter
         searchController.searchBar.delegate = adapter
         return searchController
     }()
@@ -36,7 +35,7 @@ class SearchViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         return tableView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         adapter.delegate = output
@@ -56,6 +55,7 @@ class SearchViewController: UIViewController {
     }
 }
 
+//MARK: - SearchViewInput
 extension SearchViewController: SearchViewInput {
     func navigate(viewController: UIViewController) {
         view.endEditing(true)

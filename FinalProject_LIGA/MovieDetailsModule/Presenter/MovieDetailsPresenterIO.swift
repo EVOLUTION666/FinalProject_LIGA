@@ -21,7 +21,7 @@ protocol MovieDetailsViewOutput {
 }
 
 class MovieDetailsPresenterIO: MovieDetailsViewOutput {
-
+    
     private var movie: MovieDetailsModel
     private let favoriteMovieManager: FavoritesMovieManager
     weak var input: MovieDetailsViewInput?
@@ -39,12 +39,12 @@ class MovieDetailsPresenterIO: MovieDetailsViewOutput {
     
     func addFavorite() {
         if favoriteMovieManager.fetchFavoriteMovie(byIdentifier: movie.movieId) != nil {
-                self.favoriteMovieManager.deleteFavoriteMovie(id: self.movie.movieId)
-                self.input?.didDeleteMovie()
-
+            self.favoriteMovieManager.deleteFavoriteMovie(id: self.movie.movieId)
+            self.input?.didDeleteMovie()
+            
         } else {
-                self.favoriteMovieManager.createMovie(movie: self.movie)
-                self.input?.didSaveMovie()
+            self.favoriteMovieManager.createMovie(movie: self.movie)
+            self.input?.didSaveMovie()
         }
     }
 }

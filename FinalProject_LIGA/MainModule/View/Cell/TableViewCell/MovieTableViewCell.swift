@@ -44,7 +44,7 @@ class MovieTableViewCell: UITableViewCell {
         movieDate.translatesAutoresizingMaskIntoConstraints = false
         movieDate.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         movieDate.numberOfLines = 0
-        movieDate.textColor = UIColor.orange
+        movieDate.textColor = UIColor.systemRed
         return movieDate
     }()
     
@@ -53,11 +53,11 @@ class MovieTableViewCell: UITableViewCell {
         movieRating.translatesAutoresizingMaskIntoConstraints = false
         movieRating.font = UIFont.systemFont(ofSize: 17, weight: .medium)
         movieRating.numberOfLines = 0
-        movieRating.textColor = UIColor.orange
+        movieRating.textColor = UIColor.systemRed
         movieRating.textAlignment = .right
         return movieRating
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.contentView.backgroundColor = .backGround
@@ -81,7 +81,6 @@ class MovieTableViewCell: UITableViewCell {
     }
     
     private func setupUI() {
-        
         contentView.addSubview(movieImageView)
         contentView.addSubview(backView)
         backView.addSubview(movieName)
@@ -92,7 +91,6 @@ class MovieTableViewCell: UITableViewCell {
         movieRating.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         
         NSLayoutConstraint.activate([
-            
             movieImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             movieImageView.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor),
             movieImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),

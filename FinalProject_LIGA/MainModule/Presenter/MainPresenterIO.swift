@@ -66,12 +66,11 @@ class MainPresenter: MainViewOutput {
             }
         }
     }
-    
 }
 
 enum MainModuleBuilder {
     static func buildMainModule() -> UIViewController {
-        let view = ViewController()
+        let view = MainViewController()
         let presenter = MainPresenter(view: view, movieApiService: MovieApiService.shared)
         view.output = presenter
         return view

@@ -14,14 +14,12 @@ class DetailsViewController: UIViewController {
     
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-//        scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .clear
         return scrollView
     }()
     
     private lazy var backGroundImage: UIImageView = {
         let backGroundImage = UIImageView()
-        backGroundImage.image = UIImage(named: "car1")
         return backGroundImage
     }()
     
@@ -33,7 +31,6 @@ class DetailsViewController: UIViewController {
     
     private lazy var posterImage: UIImageView = {
         let posterImage = UIImageView()
-        posterImage.image = UIImage(named: "car1")
         posterImage.contentMode = .scaleAspectFill
         posterImage.translatesAutoresizingMaskIntoConstraints = false
         posterImage.layer.cornerRadius = 20
@@ -60,6 +57,7 @@ class DetailsViewController: UIViewController {
         let ratingImage = UIImageView()
         ratingImage.translatesAutoresizingMaskIntoConstraints = false
         ratingImage.image = UIImage(systemName: "star.fill")
+        ratingImage.tintColor = .systemRed
         return ratingImage
     }()
     
@@ -81,6 +79,7 @@ class DetailsViewController: UIViewController {
         let dateImage = UIImageView()
         dateImage.translatesAutoresizingMaskIntoConstraints = false
         dateImage.image = UIImage(systemName: "calendar")
+        dateImage.tintColor = .systemRed
         return dateImage
     }()
     
@@ -137,7 +136,7 @@ class DetailsViewController: UIViewController {
     }()
     
     private lazy var backgroundPosterView: UIView = {
-       let backgroundPosterView = UIView()
+        let backgroundPosterView = UIView()
         backgroundPosterView.translatesAutoresizingMaskIntoConstraints = false
         return backgroundPosterView
     }()
@@ -156,26 +155,26 @@ class DetailsViewController: UIViewController {
         blureView.frame = view.bounds
         scrollView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - (tabBarController?.tabBar.frame.height ?? 0))
     }
-
+    
     
     @objc func didTapFavoritesButton() {
         output.addFavorite()
     }
-
+    
     private func setupUI() {
         view.addSubview(backGroundImage)
         view.addSubview(blureView)
         view.addSubview(scrollView)
         backgroundPosterView.addSubview(posterImage)
         scrollView.addSubview(generalStackView)
+        
         generalStackView.layoutMargins = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         generalStackView.isLayoutMarginsRelativeArrangement = true
-
+        
         movieName.setContentHuggingPriority(.required, for: .vertical)
         movieName.setContentCompressionResistancePriority(.required, for: .vertical)
         
         NSLayoutConstraint.activate([
-            
             scrollView.contentLayoutGuide.topAnchor.constraint(equalTo: generalStackView.topAnchor),
             scrollView.contentLayoutGuide.bottomAnchor.constraint(equalTo: generalStackView.bottomAnchor),
             scrollView.contentLayoutGuide.leadingAnchor.constraint(equalTo: generalStackView.leadingAnchor),
@@ -214,17 +213,19 @@ extension DetailsViewController: MovieDetailsViewInput {
         if let data = model.movieData {
             posterImage.image = UIImage(data: data)
             backGroundImage.image = UIImage(data: data)
-        }else if let url = model.moviePosterURL {
+        } else if let url = model.moviePosterURL {
             posterImage.loadImage(url: url)
             backGroundImage.loadImage(url: url)
             if url == "" {
                 blureView.alpha = 0
             }
         }
+        
         movieName.text = model.movieName
         ratingLabel.text = model.movieRating
         releaseTextDate.text = model.movieReleaseDate
         overViewTextLabel.text = model.movieOverview
+        
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: model.isSaved ? "star.fill" : "star"), style: .plain, target: self, action: #selector(didTapFavoritesButton))
     }
 }

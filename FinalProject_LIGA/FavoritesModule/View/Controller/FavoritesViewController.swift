@@ -9,9 +9,9 @@ import UIKit
 
 class FavoritesViewController: UIViewController {
     
-    var output: FavoritesViewOutput!
     private let adapter = FavoritesCollectionViewAdapter()
     private let cellSizeMultiplier: CGFloat = 750/500
+    var output: FavoritesViewOutput!
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -39,7 +39,6 @@ class FavoritesViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-//        collectionView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.height - (tabBarController?.tabBar.frame.height ?? 0))
         collectionView.frame = view.bounds
     }
     
@@ -47,7 +46,6 @@ class FavoritesViewController: UIViewController {
         super.viewWillAppear(animated)
         output.getFavoritesMoviesFromCD()
     }
-    
 }
 
 extension FavoritesViewController: FavoritesViewInput {

@@ -42,9 +42,7 @@ extension MovieTableViewAdapter: UITableViewDataSource {
         case .collectionView(let models):
             let cell = tableView.dequeueReusableCell(withIdentifier: TableViewCellWithCollectionView.identifier, for: indexPath) as! TableViewCellWithCollectionView
             cell.configure(models: models) { [weak self] model in
-                
                 self?.delegate?.didSelect(item: model)
-                
             }
             return cell
         }
@@ -58,7 +56,6 @@ extension MovieTableViewAdapter: UITableViewDataSource {
         case .list(models: let models):
             delegate?.didSelect(item: models[indexPath.row])
         }
-        
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -88,5 +85,4 @@ extension MovieTableViewAdapter: UITableViewDataSource {
         }
         return header
     }
-    
 }

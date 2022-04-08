@@ -31,7 +31,7 @@ class TableViewCellWithCollectionView: UITableViewCell {
         collectionView.delegate = adapter
         return collectionView
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.addSubview(collectionView)

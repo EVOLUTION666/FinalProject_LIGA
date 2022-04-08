@@ -27,7 +27,7 @@ protocol SearchViewOutput: SearchControllerAdapterDelegate, SearchTableViewAdapt
 }
 
 class SearchMoviePresenter: SearchViewOutput {
-
+    
     weak var input: SearchViewInput!
     private let movieApiService: MovieApiService
     

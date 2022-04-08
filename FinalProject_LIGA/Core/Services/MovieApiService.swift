@@ -36,10 +36,7 @@ class MovieApiService {
         }
     }
     
-    func getSearchResults(searchText: String, completion: @escaping (Movie?) -> ()) {
-        
-        print("URL----->\(baseURL + MovieApiUrl.search.rawValue)?api_key=\(apiKey)&language=ru-RU&query=\(searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")")
-        
+    func getSearchResults(searchText: String, completion: @escaping (Movie?) -> ()) {        
         NetworkService.request(urlString: "\(baseURL + MovieApiUrl.search.rawValue)?api_key=\(apiKey)&language=ru-RU&query=\(searchText.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? "")") { result in
             switch result {
             case .failure(let error): print(error)

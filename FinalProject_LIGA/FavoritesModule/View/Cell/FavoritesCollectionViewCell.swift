@@ -33,17 +33,14 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupUI() {
-        
+    private func setupUI() {
         contentView.addSubview(favoriteImage)
         
         NSLayoutConstraint.activate([
-        
             favoriteImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             favoriteImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             favoriteImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             favoriteImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-        
         ])
     }
 }

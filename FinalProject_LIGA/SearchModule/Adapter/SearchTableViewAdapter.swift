@@ -16,12 +16,14 @@ class SearchTableViewAdapter: NSObject {
     weak var delegate: SearchTableViewAdapterDelegate?
 }
 
+//MARK: - UITableViewDelegate
 extension SearchTableViewAdapter: UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 }
 
+//MARK: - UITableViewDataSource
 extension SearchTableViewAdapter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchArray.count
@@ -44,5 +46,4 @@ extension SearchTableViewAdapter: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
-    
 }

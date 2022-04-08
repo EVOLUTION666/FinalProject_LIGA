@@ -18,7 +18,7 @@ class CustomHeader: UITableViewHeaderFooterView {
     }()
     
     static let identifier = "CustomHeader"
-
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         configureHeader()
@@ -32,7 +32,7 @@ class CustomHeader: UITableViewHeaderFooterView {
         labelHeader.text = title
     }
     
-    func configureHeader() {
+    private func configureHeader() {
         contentView.addSubview(labelHeader)
         
         NSLayoutConstraint.activate([

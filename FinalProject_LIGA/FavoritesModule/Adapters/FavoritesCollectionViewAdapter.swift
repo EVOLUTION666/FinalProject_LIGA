@@ -17,18 +17,18 @@ class FavoritesCollectionViewAdapter: NSObject {
     weak var delegate: FavoriteCollectionViewAdapterDelegate?
 }
 
+//MARK: - UICollectionViewDelegate
 extension FavoritesCollectionViewAdapter: UICollectionViewDelegate {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("index = \(indexPath.row)")
         delegate?.didSelect(item: movies[indexPath.row])
     }
-    
 }
 
+//MARK: - UICollectionViewDataSource
 extension FavoritesCollectionViewAdapter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.count
@@ -43,46 +43,26 @@ extension FavoritesCollectionViewAdapter: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
-//        let config = UIContextMenuConfiguration(identifier: nil,
-//                                                previewProvider: nil) { _ in
-//
-//            let delete = UIAction(title: "Remove Favorite",
-//                                image: UIImage(systemName: "star.fill"),
-//                                identifier: nil,
-//                                discoverabilityTitle: nil,
-//                                attributes: .destructive,
-//                                state: .off) { _ in
-//                print("Tapped delete")
-//                self.delegate?.delete(model: self.movies[indexPath.row])
-//            }
-//
-//            return UIMenu(title: "",
-//                          image: nil,
-//                          identifier: nil,
-//                          options: UIMenu.Options.displayInline,
-//                          children: [delete])
-//        }
-//        return config
+        
         let identifier = NSString(string: String(indexPath.row))
-                let config = UIContextMenuConfiguration(identifier: identifier,
-                                                        previewProvider: nil) { _ in
-        
-                    let delete = UIAction(title: "Remove Favorite",
-                                        image: UIImage(systemName: "star.fill"),
-                                        identifier: nil,
-                                        discoverabilityTitle: nil,
-                                        attributes: .destructive,
-                                        state: .off) { _ in
-                        print("Tapped delete")
-                        self.delegate?.delete(model: self.movies[indexPath.row])
-                    }
-        
-                    return UIMenu(title: "",
-                                  image: nil,
+        let config = UIContextMenuConfiguration(identifier: identifier,
+                                                previewProvider: nil) { _ in
+            
+            let delete = UIAction(title: "Remove Favorite",
+                                  image: UIImage(systemName: "star.fill"),
                                   identifier: nil,
-                                  options: UIMenu.Options.displayInline,
-                                  children: [delete])
-                }
+                                  discoverabilityTitle: nil,
+                                  attributes: .destructive,
+                                  state: .off) { _ in
+                self.delegate?.delete(model: self.movies[indexPath.row])
+            }
+            
+            return UIMenu(title: "",
+                          image: nil,
+                          identifier: nil,
+                          options: UIMenu.Options.displayInline,
+                          children: [delete])
+        }
         return config
     }
     
@@ -90,7 +70,7 @@ extension FavoritesCollectionViewAdapter: UICollectionViewDataSource {
         
         guard let indexString = configuration.identifier as? String, let index = Int(indexString) else { return nil }
         guard let cell = collectionView.cellForItem(at: .init(row: index, section: 0)) as? FavoritesCollectionViewCell else { return nil }
-
+        
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
         
@@ -100,11 +80,10 @@ extension FavoritesCollectionViewAdapter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, previewForDismissingContextMenuWithConfiguration configuration: UIContextMenuConfiguration) -> UITargetedPreview? {
         guard let indexString = configuration.identifier as? String, let index = Int(indexString) else { return nil }
         guard let cell = collectionView.cellForItem(at: .init(row: index, section: 0)) as? FavoritesCollectionViewCell else { return nil }
-
+        
         let parameters = UIPreviewParameters()
         parameters.backgroundColor = .clear
         
         return UITargetedPreview(view: cell.favoriteImage, parameters: parameters)
     }
-    
 }

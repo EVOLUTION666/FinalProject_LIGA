@@ -16,6 +16,7 @@ class MovieCollectionViewAdapter: NSObject {
     var models = [MovieModel]()
 }
 
+//MARK: - UICollectionViewDelegate
 extension MovieCollectionViewAdapter: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -27,6 +28,7 @@ extension MovieCollectionViewAdapter: UICollectionViewDelegate {
     }
 }
 
+//MARK: - UICollectionViewDataSource
 extension MovieCollectionViewAdapter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return models.count

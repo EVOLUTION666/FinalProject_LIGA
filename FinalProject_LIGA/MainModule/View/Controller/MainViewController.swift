@@ -7,10 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     private let adapter = MovieTableViewAdapter()
     private let manager: FavoritesMovieManager = FavoritesMovieManager()
+    
     var output: MainViewOutput!
     
     private lazy var tableView: UITableView = {
@@ -42,7 +43,6 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: MainViewInput {
+extension MainViewController: MainViewInput {
     func navigate(viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
     }
