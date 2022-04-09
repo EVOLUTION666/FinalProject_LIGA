@@ -79,7 +79,7 @@ extension MovieTableViewAdapter: UITableViewDataSource {
        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier:
                                                                 CustomHeader.identifier) as! CustomHeader
         if section == 0 {
-            header.setTile(title: "Popular Movies")
+            header.setTile(title: "Premieres")
         } else if section == 1 {
             header.setTile(title: "Top Rated Movies")
         }

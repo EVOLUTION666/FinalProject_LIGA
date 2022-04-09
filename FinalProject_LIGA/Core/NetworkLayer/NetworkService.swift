@@ -24,13 +24,16 @@ struct DecodeResponse {
 
 class NetworkService {
     
-    static func request(urlString: String, completion: @escaping (Result<DecodeResponse, NetworkError>) -> ()) {
+    static func request(urlString: String, headers: [String : String] = [:], completion: @escaping (Result<DecodeResponse, NetworkError>) -> ()) {
         guard let url = URL(string: urlString) else {
             completion(.failure(.invalidURL))
             return
         }
         
-        URLSession.shared.dataTask(with: url) { data, response, error in
+        var request = URLRequest(url: url)
+        request.allHTTPHeaderFields = headers
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
             
             guard let response = response as? HTTPURLResponse else {
                 completion(.failure(NetworkError.responseError))

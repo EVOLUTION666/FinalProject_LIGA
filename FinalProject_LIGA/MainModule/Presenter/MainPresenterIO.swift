@@ -38,13 +38,13 @@ class MainPresenter: MainViewOutput {
     }
     
     private func getPopularMovies() {
-        MovieApiService.shared.getPopularMovies { [weak self] popularMovie in
+        MovieApiService.shared.getPremiersMovies { [weak self] popularMovie in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 guard let popularMovie = popularMovie else { return }
                 
-                let collectionModels = popularMovie.results.map({
-                    MovieModel(id: $0.id, image: $0.posterPath ?? "", rating: String($0.voteAverage), name: $0.title, date: $0.releaseDate, description: $0.overview)
+                let collectionModels = popularMovie.films.map({
+                    MovieModel(id: $0.id, image: $0.posterPath ?? "", rating: $0.voteAverage, name: $0.title, date: $0.releaseDate)
                 })
                 self.models.insert(.collectionView(models: collectionModels), at: 0)
                 self.input?.setupModel(model: self.models)
@@ -58,8 +58,8 @@ class MainPresenter: MainViewOutput {
                 guard let self = self else { return }
                 guard let topRatedMovie = topRatedMovie else { return }
                 
-                let collectionModels = topRatedMovie.results.map({
-                    MovieModel(id: $0.id, image: $0.posterPath ?? "", rating: String($0.voteAverage), name: $0.title, date: $0.releaseDate, description: $0.overview)
+                let collectionModels = topRatedMovie.films.map({
+                    MovieModel(id: $0.id, image: $0.posterPath ?? "", rating: $0.voteAverage, name: $0.title, date: $0.releaseDate)
                 })
                 self.models.append(.list(models: collectionModels))
                 self.input?.setupModel(model: self.models)
@@ -79,7 +79,7 @@ enum MainModuleBuilder {
 
 extension MainPresenter: MovieTableViewAdapterDelegate {
     func didSelect(item: MovieModel) {
-        let viewController = MovieDetailsBuilder.buildMovieDetailsModule(movie: .init(movieId: item.id, movieName: item.name ?? "", moviePosterURL: item.image, movieData: nil, movieReleaseDate: item.date ?? "", movieOverview: item.description ?? "", movieRating: item.rating ?? ""))
+        let viewController = MovieDetailsBuilder.buildMovieDetailsModule(movieID: item.id)
         input?.navigate(viewController: viewController)
     }
 }

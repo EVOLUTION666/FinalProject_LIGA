@@ -77,7 +77,7 @@ class MovieTableViewCell: UITableViewCell {
         movieImageView.loadImage(url: model.image, placeholder: UIImage(named: "not-found"))
         movieName.text = model.name
         movieDate.text = model.date
-        movieRating.text = model.rating
+        movieRating.text = model.rating == "null" ? "0.0" : model.rating
     }
     
     private func setupUI() {

@@ -18,5 +18,4 @@ struct MovieModel {
     let rating: String?
     let name: String?
     let date: String?
-    let description: String?
 }

@@ -27,7 +27,7 @@ struct FavoritesMovieManager {
         DispatchQueue.global(qos: .utility).async {
             var imageData: Data? = nil
             
-            if let url = URL(string: "https://image.tmdb.org/t/p/w500" + (movie.moviePosterURL ?? "")) {
+            if let url = URL(string: movie.moviePosterURL ?? "") {
                 imageData = try? Data(contentsOf: url)
             }
             

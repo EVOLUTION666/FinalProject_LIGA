@@ -43,6 +43,7 @@ class DetailsViewController: UIViewController {
         movieName.translatesAutoresizingMaskIntoConstraints = false
         movieName.numberOfLines = 0
         movieName.font = UIFont.systemFont(ofSize: 25, weight: .heavy)
+        movieName.textColor = .black
         return movieName
     }()
     
@@ -50,6 +51,7 @@ class DetailsViewController: UIViewController {
         let ratingLabel = UILabel()
         ratingLabel.translatesAutoresizingMaskIntoConstraints = false
         ratingLabel.textAlignment = .right
+        ratingLabel.textColor = .black
         return ratingLabel
     }()
     
@@ -65,6 +67,7 @@ class DetailsViewController: UIViewController {
         let releaseDateLabel = UILabel()
         releaseDateLabel.translatesAutoresizingMaskIntoConstraints = false
         releaseDateLabel.text = "Release Date:"
+        releaseDateLabel.textColor = .black
         return releaseDateLabel
     }()
     
@@ -72,6 +75,7 @@ class DetailsViewController: UIViewController {
         let releaseTextDate = UILabel()
         releaseTextDate.translatesAutoresizingMaskIntoConstraints = false
         releaseTextDate.textAlignment = .right
+        releaseTextDate.textColor = .black
         return releaseTextDate
     }()
     
@@ -87,6 +91,7 @@ class DetailsViewController: UIViewController {
         let overViewLabel = UILabel()
         overViewLabel.translatesAutoresizingMaskIntoConstraints = false
         overViewLabel.text = "Overview:"
+        overViewLabel.textColor = .black
         return overViewLabel
     }()
     
@@ -95,6 +100,7 @@ class DetailsViewController: UIViewController {
         overViewTextLabel.translatesAutoresizingMaskIntoConstraints = false
         overViewTextLabel.numberOfLines = 0
         overViewTextLabel.textAlignment = .justified
+        overViewTextLabel.textColor = .black
         return overViewTextLabel
     }()
     
@@ -201,6 +207,10 @@ class DetailsViewController: UIViewController {
 }
 
 extension DetailsViewController: MovieDetailsViewInput {
+    func setDefaultSettings(isSaved: Bool) {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: isSaved ? "star.fill" : "star"), style: .plain, target: self, action: #selector(didTapFavoritesButton))
+    }
+    
     func didSaveMovie() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "star.fill"), style: .plain, target: self, action: #selector(didTapFavoritesButton))
     }

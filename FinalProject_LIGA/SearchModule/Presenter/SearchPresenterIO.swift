@@ -37,15 +37,15 @@ class SearchMoviePresenter: SearchViewOutput {
     }
     
     func didSelect(selectedMovie: MovieModel) {
-        let movieDetail = MovieDetailsBuilder.buildMovieDetailsModule(movie: .init(movieId: selectedMovie.id, movieName: selectedMovie.name ?? "", moviePosterURL: selectedMovie.image, movieData: nil, movieReleaseDate: selectedMovie.date ?? "", movieOverview: selectedMovie.description ?? "", movieRating: selectedMovie.rating ?? ""))
+        let movieDetail = MovieDetailsBuilder.buildMovieDetailsModule(movieID: selectedMovie.id)
         input.navigate(viewController: movieDetail)
     }
     
     func serchResult(searchResult: String?) {
         if let text = searchResult {
             movieApiService.getSearchResults(searchText: text) { movies in
-                let searchMovies = movies?.results.map { item in
-                    MovieModel(id: item.id, image: item.posterPath ?? "", rating: String(item.voteAverage), name: item.title, date: item.releaseDate, description: item.overview)
+                let searchMovies = movies?.films.map { item in
+                    MovieModel(id: item.id, image: item.posterPath ?? "", rating: item.voteAverage, name: item.title, date: item.releaseDate)
                 }
                 DispatchQueue.main.async {
                     self.input.didSearch(searchResults: searchMovies ?? [])

@@ -12,7 +12,7 @@ extension UIImageView {
         if url == "" {
             self.image = placeholder
         }
-        guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + url) else {
+        guard let url = URL(string: url) else {
             print("invalid url")
             return
         }
