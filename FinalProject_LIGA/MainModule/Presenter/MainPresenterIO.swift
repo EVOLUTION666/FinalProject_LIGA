@@ -22,23 +22,22 @@ class MainPresenter: MainViewOutput {
     
     private var popularMovies = [PopularMovieResult]()
     private var models = [CellModel]()
+    private let movieApiService: MovieApiService
+    
+    weak var input: MainViewInput?
+
+    init(view: MainViewInput, movieApiService: MovieApiService) {
+        self.input = view
+        self.movieApiService = movieApiService
+    }
     
     func setupUIView() {
         getPopularMovies()
         getTopRatedMovies()
     }
     
-    weak var input: MainViewInput?
-    private let movieApiService: MovieApiService
-    
-    init(view: MainViewInput, movieApiService: MovieApiService) {
-        self.input = view
-        self.movieApiService = movieApiService
-        
-    }
-    
     private func getPopularMovies() {
-        MovieApiService.shared.getPremiersMovies { [weak self] popularMovie in
+        movieApiService.getPremiersMovies { [weak self] popularMovie in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 guard let popularMovie = popularMovie else { return }
@@ -53,7 +52,7 @@ class MainPresenter: MainViewOutput {
     }
     
     private func getTopRatedMovies() {
-        MovieApiService.shared.getTopRatedMovies { [weak self] topRatedMovie in
+        movieApiService.getTopRatedMovies { [weak self] topRatedMovie in
             DispatchQueue.main.async {
                 guard let self = self else { return }
                 guard let topRatedMovie = topRatedMovie else { return }

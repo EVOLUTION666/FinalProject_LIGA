@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 final class PersistentStorage {
+    
     // MARK: - Core Data stack
     
     private init() {}
@@ -54,5 +55,4 @@ final class PersistentStorage {
         }
         return nil
     }
-    
 }

@@ -31,7 +31,6 @@ extension CDFavoriteMovies {
                        movieOverview: self.movieOverview,
                        movieRating: self.movieRating)
     }
-
 }
 
 extension CDFavoriteMovies : Identifiable {

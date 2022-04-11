@@ -41,10 +41,6 @@ class MainViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .automatic
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds

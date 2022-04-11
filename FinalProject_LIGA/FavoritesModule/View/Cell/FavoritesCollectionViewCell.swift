@@ -11,16 +11,12 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
     
     static let identifier = "FavoritesCollectionViewCell"
     
-    private var didSelectItem: ((FavoritesMovie) -> ())?
-    private let adapter = MovieCollectionViewAdapter()
-    
     lazy var favoriteImage: UIImageView = {
         let favoriteImage = UIImageView()
         favoriteImage.translatesAutoresizingMaskIntoConstraints = false
         favoriteImage.contentMode = .scaleAspectFill
         favoriteImage.clipsToBounds = true
         favoriteImage.layer.cornerRadius = 10
-        favoriteImage.image = UIImage(named: "car1")
         return favoriteImage
     }()
     
@@ -42,15 +38,5 @@ class FavoritesCollectionViewCell: UICollectionViewCell {
             favoriteImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
             favoriteImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
         ])
-    }
-}
-
-extension FavoritesCollectionViewCell: FavoriteCollectionViewAdapterDelegate {
-    func didSelect(item: FavoritesMovie) {
-        didSelectItem?(item)
-    }
-    
-    func delete(model: FavoritesMovie) {
-        
     }
 }

@@ -44,5 +44,4 @@ struct FavoritesMovieManager {
     func deleteFavoriteMovie(id: Int) -> Bool {
         return _favoritesMovieDataRepository.delete(id: Int64(id))
     }
-    
 }

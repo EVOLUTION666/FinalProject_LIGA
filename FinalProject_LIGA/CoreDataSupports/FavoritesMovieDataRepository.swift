@@ -30,7 +30,6 @@ struct FavoritesMovieDataRepository: FavoritesMovieRepository {
     
     func getAll() -> [FavoritesMovie]? {
         let result = PersistentStorage.shared.fetchManagedObjects(managedObject: CDFavoriteMovies.self)
-        
         var favoritesMovies: [FavoritesMovie] = []
         result?.forEach({ (cdFavoritesMovies) in
             favoritesMovies.append(cdFavoritesMovies.convertToFavoriteMovie())
@@ -64,5 +63,4 @@ struct FavoritesMovieDataRepository: FavoritesMovieRepository {
         }
         return nil
     }
-    
 }

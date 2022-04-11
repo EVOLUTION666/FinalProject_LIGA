@@ -75,7 +75,7 @@ class MovieDetailsPresenterIO: MovieDetailsViewOutput {
                 }
 
                 var model = MovieDetailsModel(movieId: movie.kinopoiskId, movieName: movie.nameRu ?? "", moviePosterURL: movie.posterUrl, movieData: nil, movieReleaseDate: String(movie.year ?? 0), movieOverview: movie.description ?? "", movieRating: String(movie.ratingKinopoisk ?? 0.0))
-                model.isSaved = false// self.favoriteMovieManager.fetchFavoriteMovie(byIdentifier: self.movieID) != nil
+                model.isSaved = self.favoriteMovieManager.fetchFavoriteMovie(byIdentifier: self.movieID) != nil
                 self.movie = model
                 self.input?.setupModel(model: model)
             }

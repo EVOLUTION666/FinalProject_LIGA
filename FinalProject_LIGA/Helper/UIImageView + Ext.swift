@@ -26,7 +26,7 @@ extension UIImageView {
                 return
             }
             
-            URLSession.shared.dataTask(with: urlRequest) {data, response, error in
+            URLSession.shared.dataTask(with: urlRequest) { data, response, error in
                 if error != nil {
                     print("No Image data")
                     return

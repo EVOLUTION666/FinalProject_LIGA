@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum HTTPMethod: String {
-    case get = "GET"
-    case post = "POST"
-}
-
 struct DecodeResponse {
     let data: Data
     init (data: Data) {
